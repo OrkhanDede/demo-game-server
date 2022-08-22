@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "DemoGameServer";
+
+import "google/protobuf/empty.proto";
+import "Messages.proto";
+
+
+
+service PlayerGrain{
+
+ rpc JoinGame(PlayerJoinGameRequest) returns (google.protobuf.Empty);
+ rpc LeftGame(google.protobuf.Empty) returns (google.protobuf.Empty);
+ rpc ReJoinGame(google.protobuf.Empty) returns (google.protobuf.Empty);
+ rpc RequestGameState(google.protobuf.Empty) returns (GetGameStateResponse);
+ rpc Shut(PlayerShutRequest) returns (google.protobuf.Empty);
+ rpc Shuted(google.protobuf.Empty) returns (google.protobuf.Empty);
+ rpc DrinkElixir(google.protobuf.Empty) returns (google.protobuf.Empty);
+ rpc SetFalseCanDrinkElixir(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+service GameGrain{
+rpc JoinGame(PlayerJoinGame) returns (google.protobuf.Empty);
+rpc LeftGame(PlayerLeftGame) returns (google.protobuf.Empty);
+rpc GetState(google.protobuf.Empty) returns (GetGameStateResponse);
+rpc ChangePlayerState(PlayerStateChange) returns (google.protobuf.Empty);
+
+}

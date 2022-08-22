@@ -1,0 +1,90 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "DemoGameServer";
+
+
+enum PlayerStatus {
+Default=0;
+OnGame=1;
+GameOver=2;
+}
+
+
+
+message PlayerIdentityInfo{
+	string username = 1;
+	string address = 2;
+	string id = 3;
+}
+message PlayerStateInfo{
+	int32 point=1;
+	int32 life=2;
+	string username=3;
+	PlayerStatus status=4;
+	bool can_drink_elixir=5;
+
+}
+message PlayerInfo{
+	PlayerIdentityInfo identity=1;
+	PlayerStateInfo state=2;
+}
+message PlayerConnectRequest {
+	string username = 1;
+	string address = 2;
+	string id = 3;
+}
+message PlayerJoinedGame{
+	PlayerStateInfo player=1;
+}
+message PlayerLeftedGame{
+	string username=1;
+}
+message PlayerJoinGame{
+	PlayerIdentityInfo identity=1;
+	PlayerStateInfo state=2;
+}
+message PlayerLeftGame{
+ PlayerIdentityInfo identity=1;
+}
+
+message GetGameStateResponse{
+	repeated PlayerStateInfo players=1;
+}
+
+message PlayerJoinGameRequest{
+	string username = 1;
+	string address = 2;
+	string id = 3;
+}
+message PlayerLeftGameRequest{
+
+}
+message GetGameStateRequest{
+
+}
+message PlayerShutRequest{
+	string username=1;
+}
+message PlayerStateChange{
+	PlayerStateInfo state=1;
+}
+message PlayerStateChanged{
+	PlayerStateInfo state=1;
+}
+message PlayerRejoinRequest{
+
+}
+message PlayerRejoined{
+	PlayerStateInfo state=1;
+}
+message PlayerDrinkElixirRequest{
+
+}
+message PlayerDrankElixir{
+	PlayerStateInfo state=1;
+}
+message StartPlayerSchedulerMessage{
+	float milli_seconds=1;
+}
+message StopPlayerSchedulerMessage{
+}
