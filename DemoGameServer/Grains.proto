@@ -10,7 +10,7 @@ import "Messages.proto";
 service PlayerGrain{
 
  rpc JoinGame(PlayerJoinGameRequest) returns (google.protobuf.Empty);
- rpc LeftGame(google.protobuf.Empty) returns (google.protobuf.Empty);
+ rpc LeaveGame(google.protobuf.Empty) returns (google.protobuf.Empty);
  rpc ReJoinGame(google.protobuf.Empty) returns (google.protobuf.Empty);
  rpc RequestGameState(google.protobuf.Empty) returns (GetGameStateResponse);
  rpc Shut(PlayerShutRequest) returns (google.protobuf.Empty);
@@ -20,7 +20,7 @@ service PlayerGrain{
 }
 service GameGrain{
 rpc JoinGame(PlayerJoinGame) returns (google.protobuf.Empty);
-rpc LeftGame(PlayerLeftGame) returns (google.protobuf.Empty);
+rpc LeaveGame(PlayerLeaveGame) returns (google.protobuf.Empty);
 rpc GetState(google.protobuf.Empty) returns (GetGameStateResponse);
 rpc ChangePlayerState(PlayerStateChange) returns (google.protobuf.Empty);
 

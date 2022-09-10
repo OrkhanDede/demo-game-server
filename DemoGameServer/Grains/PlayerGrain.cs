@@ -47,10 +47,10 @@ namespace DemoGameServer.Grains
                 },CancellationToken.None);
         }
 
-        public override async Task LeftGame()
+        public override async Task LeaveGame()
         {
                 var gameGrain = Context.Cluster().GetGameGrain(GameGrain.Default);
-                await gameGrain.LeftGame(new ()
+                await gameGrain.LeaveGame(new ()
                 {
                     Identity = _playerIdentityInfo,
                 }, CancellationToken.None);

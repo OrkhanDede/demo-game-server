@@ -29,8 +29,8 @@ namespace DemoGameServer.Actors
                 case PlayerJoinGameRequest playerJoinGameRequest:
                     await PlayerJoinGameRequestHandlerAsync(playerJoinGameRequest,context);
                     break;
-                case PlayerLeftGameRequest playerLeftGameRequest:
-                    await PlayerLeftGameRequestHandlerAsync(context);
+                case PlayerLeaveGameRequest playerLeaveGameRequest:
+                    await PlayerLeaveGameRequestHandlerAsync(context);
                     break;
                 case GetGameStateRequest getGameStateRequest:
                     await GetGameStateRequestHandlerAsync(context);
@@ -38,8 +38,8 @@ namespace DemoGameServer.Actors
                 case PlayerJoinedGame joined:
                     await PlayerJoinedGameAsync(joined);
                     break;
-                case PlayerLeftedGame lefted:
-                    await PlayerLeftedGameAsync(lefted);
+                case PlayerLeftGame left:
+                    await PlayerLeftGameAsync(left);
                     break;
                 case PlayerShutRequest playerShutRequest:
                     await PlayerShutRequest(playerShutRequest,context);
@@ -68,7 +68,7 @@ namespace DemoGameServer.Actors
         {
             if (String.IsNullOrEmpty(_name)) return;
             var playerGrain = context.Cluster().GetPlayerGrain(_name);
-            await playerGrain.LeftGame(CancellationToken.None);
+            await playerGrain.LeaveGame(CancellationToken.None);
         }
 
         private async Task PlayerJoinGameRequestHandlerAsync(PlayerJoinGameRequest playerJoinGameRequest,IContext context)
@@ -82,11 +82,11 @@ namespace DemoGameServer.Actors
                 Id = context.Self.Id
             },CancellationToken.None);
         }
-        private async Task PlayerLeftGameRequestHandlerAsync(IContext context)
+        private async Task PlayerLeaveGameRequestHandlerAsync(IContext context)
         {
             if (String.IsNullOrEmpty(_name)) return;
             var playerGrain = context.Cluster().GetPlayerGrain(_name);
-            await playerGrain.LeftGame(CancellationToken.None);
+            await playerGrain.LeaveGame(CancellationToken.None);
         }
         private async Task PlayerShutRequest(PlayerShutRequest request,IContext context)
         {
@@ -125,9 +125,9 @@ namespace DemoGameServer.Actors
         {
             await _hubContext.Clients.Client(_connectionId).SendAsync("PlayerJoined", joined);
         }
-        private async Task PlayerLeftedGameAsync(PlayerLeftedGame lefted)
+        private async Task PlayerLeftGameAsync(PlayerLeftGame left)
         {
-            await _hubContext.Clients.Client(_connectionId).SendAsync("PlayerLefted", lefted.Username);
+            await _hubContext.Clients.Client(_connectionId).SendAsync("PlayerLeft", left.Username);
         }
         
     }

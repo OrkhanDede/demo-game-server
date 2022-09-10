@@ -66,13 +66,13 @@ namespace DemoGameServer.Grains
             return Task.FromResult(new JoinResponse());
         }
 
-        public override Task LeftGame(PlayerLeftGame request)
+        public override Task LeaveGame(PlayerLeaveGame request)
         {
             if (_players.ContainsKey(request.Identity.Username))
             {
                 _players.Remove(request.Identity.Username);
                 _players.Values.ToList().ForEach(p => Context.
-               Send(new PID(p.Identity.Address, p.Identity.Id), new PlayerLeftedGame()
+               Send(new PID(p.Identity.Address, p.Identity.Id), new PlayerLeftGame()
                {
                    Username = request.Identity.Username,
                }));

@@ -34,11 +34,11 @@ namespace DemoGameServer.Hubs
                });
             }
         }
-        public void Left()
+        public void Leave()
         {
             if (ConnectionPID != null)
             {
-                _actorSystem.Root.Send(ConnectionPID, new PlayerLeftGameRequest());
+                _actorSystem.Root.Send(ConnectionPID, new PlayerLeaveGameRequest());
             }
         }
         public void Rejoin()

@@ -36,14 +36,14 @@ message PlayerConnectRequest {
 message PlayerJoinedGame{
 	PlayerStateInfo player=1;
 }
-message PlayerLeftedGame{
+message PlayerLeftGame{
 	string username=1;
 }
 message PlayerJoinGame{
 	PlayerIdentityInfo identity=1;
 	PlayerStateInfo state=2;
 }
-message PlayerLeftGame{
+message PlayerLeaveGame{
  PlayerIdentityInfo identity=1;
 }
 
@@ -56,7 +56,7 @@ message PlayerJoinGameRequest{
 	string address = 2;
 	string id = 3;
 }
-message PlayerLeftGameRequest{
+message PlayerLeaveGameRequest{
 
 }
 message GetGameStateRequest{
