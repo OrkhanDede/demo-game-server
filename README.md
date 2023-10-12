@@ -23,6 +23,7 @@ The primary objective of this project is to build a distributed multiplayer game
 - requirements
    - .NET 6.
    - Visual studio 2019 +
+   - To run a client application, see [Client repo](https://github.com/OrkhanDede/demo-game.client)
 
 ## Getting Started
 
