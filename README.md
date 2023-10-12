@@ -19,6 +19,11 @@ The primary objective of this project is to build a distributed multiplayer game
 
 - [SignalR](https://github.com/dotnet/aspnetcore/tree/main/src/SignalR): SignalR is used to facilitate real-time communication between the game server and players' clients. It ensures that chat messages and game updates are delivered instantly.
 
+**Build and Run**:
+- requirements
+   - .NET 6.
+   - Visual studio 2019 +
+
 ## Getting Started
 
 To get started with this project, please refer to the project's documentation and installation instructions. You can find more information on how to set up the server and start playing the game.
